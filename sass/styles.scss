@@ -1,0 +1,868 @@
+@import "custom", "keyframes", "media-queries", "typography";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css");
+
+body,
+html,
+#root {
+  height: 100%;
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: $font-Light;
+}
+
+body {
+  @include animation(body-fadein 1s);
+}
+
+@include keyframes(body-fadein) {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+*:focus {
+  outline: none !important;
+}
+
+button,
+a,
+.btn {
+  text-decoration: none;
+  @include transition(0.3s ease all);
+  &:hover,
+  &:focus {
+    text-decoration: none;
+    @include transition(0.3s ease all);
+  }
+}
+
+.header {
+  @include xs() {
+    padding-top: 30px;
+    position: relative;
+  }
+  .logo {
+    padding: 15px;
+    flex: 0 0 auto;
+    width: 20%;
+    text-align: center;
+    img {
+      width: 180px;
+    }
+    @include xs() {
+      width: 170px;
+      padding: 0px;
+      img {
+        width: 100%;
+      }
+    }
+  }
+  .header-menu-section {
+    .header-top {
+      background-color: $secondary;
+      padding: 10px 15px;
+      color: $light;
+      display: flex;
+      font-size: 14px;
+      @include xs() {
+        position: absolute;
+        top: 0px;
+        left: 0px;
+        width: 100%;
+        padding: 4px 10px !important;
+      }
+      .rc {
+        display: inherit;
+        @include xs() {
+          display: none;
+        }
+      }
+      .header-icon {
+        margin-right: 30px;
+        @include xs() {
+          margin-right: 15px !important;
+        }
+        a {
+          color: $light;
+          &:hover {
+            color: $primary;
+          }
+        }
+        .bi {
+          padding-right: 5px;
+        }
+      }
+      .header-social-icons {
+        margin-left: auto;
+        a {
+          color: $light;
+          padding: 0px 10px;
+          &:hover {
+            color: $primary;
+          }
+        }
+      }
+    }
+    .header-bottom {
+      background-color: rgb(33 150 243 / 10%);
+      position: relative;
+      @include xs() {
+        position: absolute;
+        top: 93px;
+        left: 0px;
+        width: 100%;
+        z-index: 9;
+        background: rgb(255 255 255 / 89%);
+      }
+      .btn-menu {
+        display: none;
+        position: absolute;
+        top: -50px;
+        right: 20px;
+        width: 30px;
+        height: 30px;
+        padding: 0px;
+        border-radius: 0px;
+        @include xs() {
+          display: inherit;
+        }
+        .menu-icon {
+          display: inline-block;
+          position: relative;
+          width: 30px;
+          height: 2px;
+          background-color: $primary;
+          &::before,
+          &::after {
+            content: "";
+            width: 30px;
+            height: 2px;
+            background-color: $primary;
+            position: absolute;
+            left: 0;
+          }
+          &::after {
+            top: 10px;
+            @include transition(0.3s ease all);
+          }
+          &::before {
+            top: -10px;
+            @include transition(0.3s ease all);
+          }
+        }
+        &.open {
+          .menu-icon {
+            background-color: transparent;
+            &::after,
+            &::before {
+              top: 0px;
+            }
+            &::after {
+              @include transition(0.3s ease all);
+              @include transform(rotate(45deg));
+            }
+            &::before {
+              @include transition(0.3s ease all);
+              @include transform(rotate(135deg));
+            }
+          }
+        }
+      }
+      .custom-navbar {
+        display: flex;
+        list-style: none;
+        padding: 0px;
+        margin: 0px;
+        @include xs() {
+          display: none;
+        }
+        li {
+          a {
+            color: $dark;
+            padding: 25px 50px;
+            display: inline-flex;
+            position: relative;
+            z-index: 0;
+            text-transform: uppercase;
+            font-size: 14px;
+            &:hover {
+              background-color: $primary;
+              color: $light;
+              &::before {
+                height: 100%;
+                @include transition(0.3s ease all);
+              }
+            }
+            &::before {
+              content: "";
+              position: absolute;
+              width: 100%;
+              height: 0;
+              background-color: $primary;
+              top: 0px;
+              left: 0px;
+              z-index: -1;
+              @include transition(0.3s ease all);
+            }
+            @include xs() {
+              width: 100%;
+              padding: 15px;
+            }
+          }
+          &.active {
+            a {
+              background-color: $secondary-red;
+              color: $light;
+              &::before {
+                display: none;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  .ofoh {
+    position: absolute;
+    bottom: 19px;
+    right: 15px;
+    color: $light;
+    z-index: -1;
+    padding: 6px 15px;
+    border-radius: 40px;
+    font-size: 14px;
+    @include linear-gradient($primary, $secondary);
+    @include xs() {
+      display: none;
+    }
+  }
+}
+
+.banner-part {
+  position: relative;
+  z-index: 0;
+  &.inner {
+    .banner-text {
+      font-size: 40px;
+      height: 100px;
+      width: auto;
+    }
+  }
+  .banner-text {
+    position: absolute;
+    top: calc(70% - 75px);
+    left: calc(30% - 350px);
+    display: block;
+    height: 150px;
+    color: $light;
+    font-size: 36px;
+    width: 700px;
+    padding-top: 22px;
+    padding-left: 40px;
+    z-index: 0;
+    @include xs() {
+      font-size: 14px;
+      left: 0px;
+      bottom: 0px;
+      top: inherit;
+      height: 50px;
+      padding: 5px 10px;
+    }
+    &::after {
+      content: "";
+      height: 100%;
+      width: 100%;
+      background-color: rgb(239 65 54 / 78%);
+      position: absolute;
+      top: 0px;
+      left: 0px;
+      @include animation(slide 2s);
+      z-index: -1;
+    }
+  }
+  img {
+    width: 100%;
+  }
+}
+
+@include keyframes(slide) {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}
+
+.section-heading {
+  text-align: center;
+  color: $primary;
+  text-transform: uppercase;
+  position: relative;
+  line-height: 80px;
+  @include transition(0.3s ease all);
+  @include xs() {
+    line-height: 40px;
+    font-size: 20px;
+  }
+  span {
+    font-family: $font-Bold;
+  }
+  &::after {
+    content: "";
+    height: 3px;
+    width: 100px;
+    background-color: $secondary;
+    position: absolute;
+    margin: auto;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    border-radius: 30px;
+    @include transition(0.3s ease all);
+  }
+}
+.section-para {
+  text-align: center;
+  margin-top: 30px;
+  @include xs() {
+    font-size: 14px;
+    margin-top: 15px;
+  }
+}
+
+.healthy-water {
+  padding: 70px 0px;
+  @include xs() {
+    padding: 30px 0px;
+  }
+  &:hover {
+    .section-heading {
+      color: $secondary;
+      @include transition(0.3s ease all);
+      &::after {
+        width: 120px;
+        background-color: $secondary-red;
+        @include transition(0.3s ease all);
+      }
+    }
+  }
+}
+
+.section-footer {
+  text-align: center;
+  padding-top: 40px;
+  .btn-section,
+  .btn-section {
+    padding: 10px 40px;
+    border-radius: 6px;
+    text-transform: uppercase;
+    background-color: $primary;
+    font-family: $font-Bold;
+    color: $light;
+    @include transform(translate(0px, 0px));
+    &:hover {
+      @include transform(translate(3px, 3px));
+      background-color: $secondary;
+      box-shadow: -5px 5px $primary;
+    }
+  }
+}
+
+.section-card {
+  margin-top: 50px;
+  background: url(../img/card-bg.png) no-repeat;
+  background-color: rgb(238, 245, 255);
+  padding: 20px;
+  border-radius: 6px;
+  position: relative;
+  z-index: 0;
+  @include transition(0.3s ease all);
+  @include transform(translate(0px, 0px));
+  @include xs() {
+    margin-top: 15px;
+  }
+  .card-icon {
+    width: 80px;
+    height: 80px;
+    margin: 20px 0px;
+    img {
+      width: 100%;
+    }
+  }
+  .card-content {
+    margin-top: 35px;
+    .card-heading {
+      font-size: 24px;
+      text-transform: uppercase;
+      font-family: $font-Bold;
+      color: $secondary;
+      @include transition(0.3s ease all);
+    }
+  }
+  &::before {
+    content: "";
+    height: 100%;
+    width: 30px;
+    background-color: transparent;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    left: 0;
+    @include transition(0.3s ease all);
+    z-index: -1;
+  }
+
+  &:hover {
+    @include transform(translate(-20px, -20px));
+    @include transition(0.3s ease all);
+    box-shadow: 10px 10px $primary;
+    &::before {
+      width: 100%;
+      @include transition(0.3s ease all);
+      background: url(../img/card-hover-bg.png) no-repeat center;
+      background-color: $light;
+    }
+
+    .card-content {
+      .card-heading {
+        color: $secondary-red;
+        @include transition(0.3s ease all);
+      }
+    }
+  }
+}
+
+.feature-products {
+  padding: 70px 0px;
+  background: url(../img/section-white-bg.png) no-repeat;
+  background-color: rgb(33 150 243 / 10%);
+  background-position: left center;
+  background-size: cover;
+  background-attachment: fixed;
+  @include xs() {
+    padding: 30px 0px;
+  }
+  &:hover {
+    .section-heading {
+      color: $secondary;
+      @include transition(0.3s ease all);
+      &::after {
+        width: 120px;
+        background-color: $secondary-red;
+        @include transition(0.3s ease all);
+      }
+    }
+  }
+}
+
+.feature-card {
+  position: relative;
+  overflow: hidden;
+  margin: 0px 15px;
+  .feature-img {
+    img {
+      width: 100%;
+    }
+  }
+  .feature-heading {
+    position: absolute;
+    width: 100%;
+    height: 30%;
+    bottom: 0;
+    left: 0;
+    @include linear-gradient-t(transparent, $dark);
+    color: $light;
+    font-family: $font-Bold;
+    font-size: 24px;
+    display: flex;
+    align-items: end;
+    padding: 15px;
+    @include xs() {
+      font-size: 18px;
+    }
+  }
+  .feature-card-details {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    bottom: -100%;
+    left: 0;
+    color: $light;
+    background-color: $secondary;
+    z-index: 1;
+    overflow: hidden;
+    padding: 180px 20px 20px;
+    @include transition(0.3s ease all);
+    .feature-card-img {
+      width: 200px;
+      height: 200px;
+      padding: 80px 40px 40px 80px;
+      background-color: $primary;
+      border-radius: 50%;
+      position: absolute;
+      left: -50px;
+      top: -50px;
+      img {
+        width: 100%;
+      }
+    }
+    .card-heading {
+      font-family: $font-Bold;
+      @include xs() {
+        font-size: 16px;
+      }
+    }
+    .card-para {
+      font-size: 14px;
+      @include xs() {
+        font-size: 13px;
+      }
+    }
+    .btn-feature {
+      border: none;
+      padding: 0px;
+      color: $light;
+      font-size: 14px;
+      background-color: $primary;
+      padding: 3px 15px;
+      &:hover {
+        @include transform(translate(-3px, -3px));
+        background-color: $secondary-red;
+        box-shadow: 5px 5px $primary;
+      }
+    }
+  }
+  &:hover {
+    .feature-card-details {
+      bottom: 0;
+      @include transition(0.3s ease all);
+    }
+  }
+}
+
+.slick-arrow {
+  position: absolute;
+  top: calc(50% - 20px);
+  z-index: 9;
+  width: 40px;
+  height: 40px;
+  overflow: hidden;
+  border: none;
+  background-color: $primary;
+  border-radius: 6px;
+  color: $light;
+  @include transform(translate(0px, 0px));
+  &:hover {
+    @include transform(translate(3px, 3px));
+    background-color: $secondary;
+    box-shadow: -5px 5px $primary;
+  }
+  &::after {
+    width: 40px;
+    height: 40px;
+    font-family: bootstrap-icons !important;
+    position: absolute;
+    top: 0px;
+    left: 2px;
+    font-size: 20px;
+    background-color: $primary;
+  }
+  &:hover {
+    background-color: $secondary;
+    &::after {
+      background-color: $secondary;
+    }
+  }
+  &.slick-prev {
+    left: 0px;
+    &::after {
+      content: "\f138";
+      @include transform(rotate(180deg));
+      top: -6px;
+    }
+  }
+  &.slick-next {
+    right: 0px;
+    &::after {
+      content: "\f138";
+      top: 5px;
+    }
+  }
+}
+
+.testimonial-section {
+  padding: 70px 0px;
+  position: relative;
+  @include xs() {
+    padding: 30px 0px;
+  }
+  z-index: 0;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 60%;
+    background-color: $secondary;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+  }
+  .section-heading {
+    color: $light;
+    font-family: $font-Bold;
+    &::after {
+      background-color: $light;
+    }
+  }
+  .section-para {
+    color: $light;
+  }
+  .testi-slider {
+    .testi-card {
+      background-color: $light;
+      padding: 30px;
+      border-radius: 6px;
+      margin: 25px 15px;
+      .tm-people {
+        width: 60px;
+        height: 60px;
+        -webkit-border-radius: 50%;
+        border-radius: 50%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        max-width: none;
+      }
+    }
+  }
+}
+
+.footer-part {
+  background-color: $secondary;
+  color: $light;
+  .footer-top {
+    padding: 50px 0px;
+    .footer-logo {
+      text-align: center;
+      img {
+        width: 200px;
+        margin-bottom: 30px;
+        @include xs() {
+          width: 150px;
+        }
+      }
+    }
+    .footer-about {
+      text-align: center;
+      opacity: 0.6;
+      margin-bottom: 30px;
+      padding-bottom: 30px;
+      border-bottom: 1px solid $light-grey;
+      @include xs() {
+        font-size: 14px;
+      }
+    }
+    .footer-contact {
+      text-align: center;
+      opacity: 0.6;
+      @include xs() {
+        font-size: 14px;
+      }
+    }
+    .footer-social-icons {
+      display: flex;
+      justify-content: center;
+      @include xs() {
+        flex-wrap: wrap;
+      }
+      a {
+        color: $light;
+        padding: 15px;
+        opacity: 0.6;
+        @include xs() {
+          font-size: 12px;
+          padding: 15px;
+        }
+        &:hover {
+          opacity: 1;
+        }
+      }
+    }
+  }
+  .footer-bottom {
+    border-top: 1px solid $primary;
+    padding: 25px;
+    text-align: center;
+    opacity: 0.6;
+    @include xs() {
+      font-size: 12px;
+    }
+  }
+}
+
+.inner-banner-part {
+  padding: 100px 0px;
+  text-align: center;
+  position: relative;
+  background: url(../img/bg1.jpg) no-repeat center;
+  display: flex;
+  justify-content: center;
+  z-index: 0;
+  background-attachment: fixed;
+  &::before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: $dark;
+    opacity: 0.7;
+    top: 0px;
+    left: 0px;
+    z-index: -1;
+  }
+  .banner-text {
+    font-size: 36px;
+    font-family: $font-Bold;
+    color: $light;
+    border-bottom: 2px solid $light;
+  }
+}
+
+.inner-body {
+  padding: 70px 0px;
+  .col {
+    @include xs() {
+      width: 100%;
+      flex: auto;
+    }
+  }
+  h1 {
+    font-size: 40px;
+    font-family: $font-Bold;
+    color: $primary;
+    border-bottom: 2px solid $secondary;
+    line-height: 50px;
+    margin-bottom: 30px;
+    @include xs() {
+      font-size: 30px;
+    }
+  }
+  h3 {
+    font-family: $font-Bold;
+    color: $secondary;
+  }
+  p {
+    text-align: justify;
+    strong {
+      font-family: $font-Bold;
+    }
+  }
+  .inner-about-img {
+    width: 320px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 15px 15px $primary;
+    img {
+      width: 100%;
+    }
+  }
+  &.inner-product {
+    .inner-about-img {
+      width: 80%;
+    }
+  }
+  &.products {
+    .btn-products {
+      @include xs() {
+        margin-bottom: 15px;
+      }
+    }
+    .inner-about-img {
+      @include xs() {
+        margin-bottom: 15px;
+      }
+    }
+  }
+  &.contact-us {
+    h1 {
+      border: none;
+      font-size: 60px;
+    }
+    .inner-about-img {
+      width: 100%;
+    }
+    .btn-email {
+      border: 1px solid $primary;
+      color: $primary;
+      border-radius: 50px;
+      padding: 15px 45px;
+      &:hover {
+        border: 1px solid $secondary;
+        background-color: $secondary;
+        color: $light;
+      }
+    }
+  }
+  &.reverse {
+    background: url(../img/section-bg.png) no-repeat;
+    background-position: left center;
+    background-attachment: fixed;
+    background-color: $bg-body;
+  }
+}
+
+.btn-products {
+  padding: 10px 40px;
+  border-radius: 6px;
+  text-transform: uppercase;
+  background-color: $primary;
+  font-family: $font-Bold;
+  color: $light;
+  @include transform(translate(0px, 0px));
+  &:hover {
+    @include transform(translate(3px, 3px));
+    background-color: $secondary;
+    box-shadow: -5px 5px $primary;
+    color: $light;
+  }
+}
+
+.inner-feature-products {
+  .card {
+    border: none;
+    box-shadow: $box-shadow-sm;
+    height: 100%;
+    .card-title {
+      font-family: $font-Bold;
+      color: $primary;
+    }
+    .card-text {
+      text-align: justify;
+    }
+  }
+}
+
+.inner-feature-products {
+  .col {
+    @include xs() {
+      width: 100%;
+      flex: auto;
+    }
+  }
+  .card {
+    @include xs() {
+      margin-bottom: 15px;
+    }
+  }
+}
